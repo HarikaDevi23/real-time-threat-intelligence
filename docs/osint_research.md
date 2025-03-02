@@ -1,128 +1,123 @@
-OSINT Research Report
+# OSINT Research Report
 
-📌 Overview
+## **📌 Overview**
 
-Open Source Intelligence (OSINT) tools play a vital role in real-time cybersecurity monitoring by collecting publicly available data on vulnerabilities, breached credentials, malware threats, and exposed assets. This report details the selected OSINT tools, their purpose, and integration into the Real-Time Threat Intelligence and Risk Management Framework for ShopSmart Solutions.
+Open Source Intelligence (**OSINT**) tools play a vital role in real-time cybersecurity monitoring by collecting publicly available data on vulnerabilities, breached credentials, malware threats, and exposed assets. This report details the selected OSINT tools, their purpose, and integration into the **Real-Time Threat Intelligence and Risk Management Framework for ShopSmart Solutions**.
 
-📌 1️⃣ Selected OSINT Tools & API Integration
+---
 
-Tool
+## **📌 1️⃣ Selected OSINT Tools & API Integration**
 
-Purpose
+| **Tool**       | **Purpose**                                             | **API Documentation**                                     |
+| -------------- | ------------------------------------------------------- | --------------------------------------------------------- |
+| Shodan         | Identifies exposed assets, open ports, and IoT devices. | [Shodan API](https://developer.shodan.io/)                |
+| SecurityTrails | Provides historical domain/IP intelligence.             | [SecurityTrails API](https://securitytrails.com/corp/api) |
+| Hunter.io      | Finds professional email addresses linked to domains.   | [Hunter.io API](https://hunter.io/api)                    |
 
-API Documentation
+---
 
-Shodan
+## **📌 2️⃣ OSINT Tool Integration in Our Project**
 
-Identifies exposed assets, open ports, and IoT devices.
+### **🔹 Shodan (Network & Asset Security)**
 
-Shodan API
+✅ **Purpose:**
 
-SecurityTrails
+- Detects exposed services, open ports, and misconfigured devices.
+- Identifies vulnerable IoT devices and critical security risks.
 
-Provides historical domain/IP intelligence.
+✅ **Integration Plan:**
 
-SecurityTrails API
+- Implement **Node.js backend API** to fetch vulnerability data from Shodan.
+- Store scan results in **PostgreSQL** for historical tracking and risk analysis.
+- Trigger **real-time alerts** when high-risk assets are detected.
 
-Hunter.io
+✅ **Example API Call:**
 
-Finds professional email addresses linked to domains.
+```bash
+curl -X GET "https://api.shodan.io/shodan/host/8.8.8.8?key=rU0XkZkEI6XYUbFzyW5mPxDTFjrWScJr"
+```
 
-Hunter.io API
+---
 
-📌 2️⃣ OSINT Tool Integration in Our Project
+### **🔹 SecurityTrails (Domain & IP Intelligence)**
 
-🔹 Shodan (Network & Asset Security)
+✅ **Purpose:**
 
-✅ Purpose:
+- Provides historical **DNS, WHOIS, and IP intelligence** for domains.
+- Detects newly registered domains, subdomains, and security risks.
 
-Detects exposed services, open ports, and misconfigured devices.
+✅ **Integration Plan:**
 
-Identifies vulnerable IoT devices and critical security risks.
+- Implement **SecurityTrails API** to fetch domain and IP metadata.
+- Store insights in **PostgreSQL** for risk analysis.
+- Display risk assessment in **React.js dashboard**.
 
-✅ Integration Plan:
+✅ **Example API Call:**
 
-Implement Node.js backend API to fetch vulnerability data from Shodan.
+```bash
+curl -X GET "https://api.securitytrails.com/v1/domain/example.com" -H "APIKEY: iE5BPVKLauxJlP7z7pHymqdWbH-_0eGB"
+```
 
-Store scan results in PostgreSQL for historical tracking and risk analysis.
+---
 
-Trigger real-time alerts when high-risk assets are detected.
+### **🔹 Hunter.io (Email Intelligence)**
 
-✅ Example API Call:
+✅ **Purpose:**
 
-curl -X GET "https://api.shodan.io/shodan/host/8.8.8.8?key=YOUR_API_KEY"
+- Finds professional email addresses associated with a domain.
+- Helps track down potential phishing and malicious domains.
 
-🔹 SecurityTrails (Domain & IP Intelligence)
+✅ **Integration Plan:**
 
-✅ Purpose:
+- Use **Hunter.io API** to fetch email addresses from a domain.
+- Store results in **PostgreSQL** and analyze domain credibility.
+- Provide warnings for **suspected phishing** attempts.
 
-Provides historical DNS, WHOIS, and IP intelligence for domains.
+✅ **Example API Call:**
 
-Detects newly registered domains, subdomains, and security risks.
+```bash
+curl -X GET "https://api.hunter.io/v2/domain-search?domain=example.com&api_key=17c24cc2d1ea9db249ce1b24ff5d03b0e42229ea"
+```
 
-✅ Integration Plan:
+---
 
-Implement SecurityTrails API to fetch domain and IP metadata.
+## **📌 3️⃣ OSINT API Data Flow in Our System**
 
-Store insights in PostgreSQL for risk analysis.
+### **How OSINT Tools Fit Into Our Real-Time Threat Intelligence System**
 
-Display risk assessment in React.js dashboard.
+**1️⃣ User Queries Threat Intelligence System**
 
-✅ Example API Call:
+- Users search for an **IP, domain, or email** in the **React.js dashboard**.
 
-curl -X GET "https://api.securitytrails.com/v1/domain/example.com" -H "APIKEY: YOUR_API_KEY"
+**2️⃣ Back-End Requests OSINT Data**
 
-🔹 Hunter.io (Email Intelligence)
+- The **Node.js API** calls **Shodan, SecurityTrails, and Hunter.io** APIs.
 
-✅ Purpose:
+**3️⃣ Data Storage & Risk Analysis**
 
-Finds professional email addresses associated with a domain.
+- API responses are stored in **PostgreSQL** for tracking.
+- **AI-based risk scoring** is applied to evaluate threats.
 
-Helps track down potential phishing and malicious domains.
+**4️⃣ Threat Intelligence Dashboard Updates**
 
-✅ Integration Plan:
+- Users see live **threat intelligence insights** in the dashboard.
+- System triggers alerts for **critical security threats**.
 
-Use Hunter.io API to fetch email addresses from a domain.
+---
 
-Store results in PostgreSQL and analyze domain credibility.
+## **📌 4️⃣ Benefits of OSINT Integration**
 
-Provide warnings for suspected phishing attempts.
+✅ **Proactive Threat Detection** – Detects security risks before an attack happens.\
+✅ **Automated Security Monitoring** – Real-time OSINT feeds provide continuous risk assessment.\
+✅ **Enhances Incident Response** – Helps prioritize security actions based on risk scoring.\
+✅ **Improves Compliance** – Aligns with **NIST Cybersecurity Framework (CSF)** and **Risk Management Framework (RMF)**.
 
-✅ Example API Call:
+---
 
-curl -X GET "https://api.hunter.io/v2/domain-search?domain=example.com&api_key=YOUR_API_KEY"
+## **📌 5️⃣ Conclusion**
 
-📌 3️⃣ OSINT API Data Flow in Our System
+By integrating **Shodan, SecurityTrails, and Hunter.io**, we enable **real-time cybersecurity monitoring** for **ShopSmart Solutions**. These tools help in **identifying network vulnerabilities, monitoring domain risks, and tracking phishing emails**, ensuring a **robust risk management framework**.
 
-How OSINT Tools Fit Into Our Real-Time Threat Intelligence System
+🚀 **Developed by Team**
 
-1️⃣ User Queries Threat Intelligence System
-
-Users search for an IP, domain, or email in the React.js dashboard.
-
-2️⃣ Back-End Requests OSINT Data
-
-The Node.js API calls Shodan, SecurityTrails, and Hunter.io APIs.
-
-3️⃣ Data Storage & Risk Analysis
-
-API responses are stored in PostgreSQL for tracking.
-
-AI-based risk scoring is applied to evaluate threats.
-
-4️⃣ Threat Intelligence Dashboard Updates
-
-Users see live threat intelligence insights in the dashboard.
-
-System triggers alerts for critical security threats.
-
-📌 4️⃣ Benefits of OSINT Integration
-
-✅ Proactive Threat Detection – Detects security risks before an attack happens.✅ Automated Security Monitoring – Real-time OSINT feeds provide continuous risk assessment.✅ Enhances Incident Response – Helps prioritize security actions based on risk scoring.✅ Improves Compliance – Aligns with NIST Cybersecurity Framework (CSF) and Risk Management Framework (RMF).
-
-📌 5️⃣ Conclusion
-
-By integrating Shodan, SecurityTrails, and Hunter.io, we enable real-time cybersecurity monitoring for ShopSmart Solutions. These tools help in identifying network vulnerabilities, monitoring domain risks, and tracking phishing emails, ensuring a robust risk management framework.
-
-🚀 Developed by Team
 
