@@ -1,11 +1,13 @@
+-- 🚀 Database Schema for Threat Intelligence Platform
+
 CREATE DATABASE threat_db;
 \c threat_db;
 
 -- 🚀 Table 1: Assets
 CREATE TABLE assets (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    category VARCHAR(255),
+    asset_name VARCHAR(255) NOT NULL,
+    asset_type VARCHAR(50) CHECK (asset_type IN ('Hardware', 'Software', 'Data', 'People', 'Process')),
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -41,3 +43,13 @@ CREATE TABLE risk_ratings (
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 🚀 Table 5: TVA Mapping (Threat-Vulnerability-Asset)
+CREATE TABLE tva_mapping (
+    id SERIAL PRIMARY KEY,
+    asset_id INT REFERENCES assets(id) ON DELETE CASCADE,
+    threat_id INT REFERENCES threats(id) ON DELETE CASCADE,
+    vulnerability_id INT REFERENCES vulnerabilities(id) ON DELETE CASCADE,
+    likelihood INT CHECK (likelihood BETWEEN 1 AND 5),
+    impact INT CHECK (impact BETWEEN 1 AND 5),
+    risk_score INT GENERATED ALWAYS AS (likelihood * impact) STORED
+);
