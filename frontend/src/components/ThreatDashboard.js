@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ThreatDashboard.css';
 
 function ThreatDashboard() {
     const [threats, setThreats] = useState([]);
@@ -11,15 +12,29 @@ function ThreatDashboard() {
 
     return (
         <div>
-            <h1>Real-Time Threat Intelligence</h1>
-            <ul>
-                {threats.map((threat, index) => (
-                    <li key={index}>{threat.threat_name} - Risk Level: {threat.risk_level}</li>
-                ))}
-            </ul>
+            <h1>Threat Intelligence Overview</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Threat</th>
+                        <th>Vulnerability</th>
+                        <th>Risk Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {threats.map((threat, index) => (
+                        <tr key={index}>
+                            <td>{threat.threat_name}</td>
+                            <td>{threat.description}</td>
+                            <td>{threat.risk_score}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }
 
 export default ThreatDashboard;
+
  

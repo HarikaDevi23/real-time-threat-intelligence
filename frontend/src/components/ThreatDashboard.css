@@ -1,0 +1,39 @@
+/* ThreatDashboard.css */
+.dashboard-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.threat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.threat-table th, .threat-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.threat-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.threat-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.no-data {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+}
