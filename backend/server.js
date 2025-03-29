@@ -3,6 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
 const { getShodanData, getSecurityTrailsData, getHunterIOData } = require('./osint');
+const { analyzeRisk } = require('./risk_analysis');
+const { recommendMitigation } = require('./mitigation_recommendations');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
