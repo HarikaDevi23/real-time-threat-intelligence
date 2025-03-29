@@ -42,7 +42,7 @@ CREATE TABLE risk_ratings (
     mitigation_plan TEXT,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+#TVA Updated
 -- 🚀 Table 5: TVA Mapping (Threat-Vulnerability-Asset)
 CREATE TABLE tva_mapping (
     id SERIAL PRIMARY KEY,
