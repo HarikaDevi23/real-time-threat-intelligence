@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Threat Intelligence API
+  description: API for accessing real-time threat data
+  version: 1.0.0
+
+paths:
+  /threats:
+    get:
+      summary: Retrieve all detected threats
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                - id: 1
+                  type: "SQL Injection"
+                  risk_score: 25
